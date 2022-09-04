@@ -1,9 +1,23 @@
+import { useState } from "react";
+
 const SimpleInput = (props) => {
+  const [inputValue, setInputValue] = useState('');
+
+  const onChangeHandler = (e) => {
+    setInputValue(e.target.value);
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log(inputValue);
+    setInputValue('');
+  }
+
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className='form-control'>
         <label htmlFor='name'>Your Name</label>
-        <input type='text' id='name' />
+        <input onChange={onChangeHandler} type='text' id='name' value={inputValue}/>
       </div>
       <div className="form-actions">
         <button>Submit</button>
